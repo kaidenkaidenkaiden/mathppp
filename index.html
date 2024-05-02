@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soil Moisture Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input {
+            margin-bottom: 10px;
+            padding: 8px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Soil Moisture Calculator</h1>
+    <div>
+        <label for="weightBefore">Weight of Soil Before Drying (X):</label>
+        <input type="number" id="weightBefore" placeholder="Enter weight before drying">
+    </div>
+    <div>
+        <label for="weightAfter">Weight of Soil After Drying (Z):</label>
+        <input type="number" id="weightAfter" placeholder="Enter weight after drying">
+    </div>
+    <button onclick="calculateMoisture()">Calculate Moisture Percentage</button>
+    <div id="result" style="margin-top: 20px; font-weight: bold;"></div>
+
+    <script>
+        function calculateMoisture() {
+            var weightBefore = parseFloat(document.getElementById('weightBefore').value);
+            var weightAfter = parseFloat(document.getElementById('weightAfter').value);
+
+            if (isNaN(weightBefore) || isNaN(weightAfter)) {
+                alert('Please enter valid numbers for weights.');
+                return;
+            }
+
+            var difference = Math.abs(weightBefore - weightAfter);
+            var moisturePercentage = (difference / weightBefore) * 100;
+
+            document.getElementById('result').textContent = 'Water Moisture Percentage: ' + moisturePercentage.toFixed(2) + '%';
+        }
+    </script>
+</body>
+</html>
